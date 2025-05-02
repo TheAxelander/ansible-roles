@@ -1,0 +1,15 @@
+- name: Install Git
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - git
+
+- name: Copy .gitconfig
+  template:
+    src: "gitconfig.j2"
+    dest: "~/.gitconfig"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'

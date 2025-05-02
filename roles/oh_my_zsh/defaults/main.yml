@@ -1,0 +1,17 @@
+---
+omz_git_repository: "https://github.com/ohmyzsh/oh-my-zsh.git"
+omz_install_path: "~/.oh-my-zsh"
+omz_version: "master"
+
+zsh_autosuggestions_git_repository: "https://github.com/zsh-users/zsh-autosuggestions.git"
+zsh_syntax_highlighting_git_repository: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+
+fzf_git_repository: "https://github.com/junegunn/fzf.git"
+fzf_install_path: "~/.fzf"
+
+fzf_tab_git_repository: "https://github.com/Aloxaf/fzf-tab"
+
+navi_release_archive: "https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-x86_64-unknown-linux-musl.tar.gz"
+navi_install_path: "~/.local/bin"
+
+zoxide_git_script: "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"

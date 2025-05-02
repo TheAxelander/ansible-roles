@@ -1,0 +1,9 @@
+---
+- name: Install and setup Docker
+  include_tasks: "docker.yml"
+
+#- name: Install and setup Podman
+#  include_tasks: "podman.yml"
+
+- name: Install lazydocker
+  include_tasks: "lazydocker.yml"

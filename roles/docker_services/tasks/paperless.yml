@@ -1,0 +1,27 @@
+---
+- name: Ensure the directory exists
+  file:
+    path: "{{ docker_services_container_path }}/paperless"
+    state: directory
+
+- name: Copy compose.yml
+  template:
+    src: "paperless.compose.yml.j2"
+    dest: "{{ docker_services_container_path }}/paperless/compose.yml"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'
+
+- name: Copy compose.env
+  template:
+    src: "paperless.compose.env.j2"
+    dest: "{{ docker_services_container_path }}/paperless/compose.env"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'
+
+
+- name: Start service
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_services_container_path }}/paperless"
+    state: present

@@ -1,0 +1,6 @@
+---
+- name: Install zoxide
+  shell: "curl -sS {{ zoxide_git_script }} | bash"
+
+- name: Delete all .zcompdump files in the home directory
+  shell: "find ~ -type f -name '.zcompdump*' -exec rm {} +"

@@ -1,0 +1,8 @@
+---
+- name: Copy .zshrc config
+  copy:
+    src: "files/.zshrc"
+    dest: "~/.zshrc"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'

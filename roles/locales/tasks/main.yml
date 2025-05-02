@@ -1,0 +1,44 @@
+---
+- name: Ensure locale is present in /etc/locale.gen
+  ansible.builtin.lineinfile:
+    path: /etc/locale.gen
+    regexp: "^#?{{ locales_locale }} UTF-8"
+    line: "{{ locales_locale }} UTF-8"
+  become: true
+
+- name: Generate locale {{ locales_locale }}
+  ansible.builtin.command: locale-gen
+  become: true
+
+- name: Ensure locale is set to {{ locales_locale }}
+  ansible.builtin.command:
+    cmd: update-locale LANG={{ locales_locale }}
+  become: true
+
+- name: Ensure 'kbd' package is installed
+  ansible.builtin.apt:
+    name: kbd
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Set keyboard layout
+  ansible.builtin.lineinfile:
+    path: /etc/default/keyboard
+    regexp: '^XKBLAYOUT='
+    line: 'XKBLAYOUT="{{ locales_keymap }}"'
+  become: true
+
+- name: Apply keyboard layout using
+  ansible.builtin.command: setupcon
+  become: true  
+
+- name: Ensure locales are generated
+  ansible.builtin.command:
+    cmd: locale-gen {{ locales_locale }}
+  become: true
+
+- name: Reboot system
+  become: true
+  reboot:
+      reboot_timeout: 60

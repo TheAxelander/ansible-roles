@@ -1,0 +1,27 @@
+---
+- name: Install podman package
+  become: true
+  package:
+    name:
+      - podman
+      - podman-compose
+    state: present
+
+- name: Set UIDs for {{ ansible_user_id }}
+  become: true
+  command: usermod --add-subuids 100000-165535 --add-subgids 100000-165535 {{ ansible_user_id }}
+
+- name: Ensure Podman socket is running
+  systemd:
+    name: podman.socket
+    scope: user
+    state: started
+    enabled: true
+
+- name: Copy special .zshrc config for Podman
+  copy:
+    src: "files/.zshrc"
+    dest: "~/.zshrc"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'

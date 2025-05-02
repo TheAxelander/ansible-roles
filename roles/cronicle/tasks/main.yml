@@ -1,0 +1,3 @@
+---
+- name: Run Cronicle Install script
+  shell: "curl -s {{ cronicle_git_script }} | node"

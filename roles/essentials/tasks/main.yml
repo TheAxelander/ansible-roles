@@ -1,0 +1,43 @@
+---
+- name: Install packages
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - curl
+      - exa
+      - mc
+      - nala
+      - btop
+      - pipx
+      - bat
+
+- name: Ensure ~/.local/bin directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Create symbolic link for bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: "{{ ansible_env.HOME }}/.local/bin/bat"
+    state: link
+
+#- name: Install tldr pages
+#  shell: "pipx install tldr"
+
+- name: Set timezone to Europe Berlin
+  become: true
+  timezone:
+    name: 'Europe/Berlin'
+
+- name: Verify timezone setting
+  command: date +%Z
+  register: timezone_check
+  changed_when: false
+
+- name: Output the current timezone
+  debug:
+    msg: "The current timezone is {{ timezone_check.stdout }}"

@@ -1,0 +1,27 @@
+---
+- name: apt update
+  become: true
+  apt:
+    update_cache: true
+
+- name: apt upgrade
+  become: true
+  apt:
+    name: "*"
+    state: latest
+
+- name: apt autoremove
+  become: true
+  apt:
+    autoremove: true
+
+- name: Check if system reboot is required
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot system
+  become: true
+  when: reboot_required.stat.exists
+  reboot:
+      reboot_timeout: 60

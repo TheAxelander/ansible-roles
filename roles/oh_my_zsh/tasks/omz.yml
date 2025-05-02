@@ -1,0 +1,44 @@
+---
+- name: Install Oh My ZSH requirements via apt
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - curl
+      - zsh
+      - powerline
+      - fonts-powerline
+
+- name: Clone Oh My ZSH repo for user
+  git:
+    repo: "{{ omz_git_repository }}"
+    dest: "{{ omz_install_path }}"
+    update: true
+    accept_hostkey: true
+    version: "{{ omz_version }}"
+
+- name: Clone zsh-autosuggestions
+  git:
+    repo: "{{ zsh_autosuggestions_git_repository }}"
+    dest: "{{ omz_install_path }}/custom/plugins/zsh-autosuggestions"
+    update: true
+    accept_hostkey: true
+
+- name: Clone zsh-syntax-highlighting
+  git:
+    repo: "{{ zsh_syntax_highlighting_git_repository }}"
+    dest: "{{ omz_install_path }}/custom/plugins/zsh-syntax-highlighting"
+    update: true
+    accept_hostkey: true
+
+- name: Get zsh installed path
+  shell: "command -v zsh"
+  register: omz_zsh_installed_path
+  changed_when: false
+
+- name: Set user shell to zsh
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ omz_zsh_installed_path.stdout }}"

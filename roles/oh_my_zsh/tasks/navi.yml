@@ -1,0 +1,11 @@
+---
+- name: Ensure the directory exists
+  file:
+    path: "{{ navi_install_path }}"
+    state: directory
+
+- name: Install navi
+  unarchive:
+    src: "{{ navi_release_archive }}"
+    dest: "{{ navi_install_path }}"
+    remote_src: yes

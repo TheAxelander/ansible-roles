@@ -1,0 +1,15 @@
+- name: Test
+  hosts: all
+  vars_files:
+    - custom-vars.yml
+  roles:
+    #- upgrade
+    #- locales
+    #- essentials
+    #- oh_my_zsh
+    #- git
+    #- unattended_upgrades
+    #- ssh
+    #- dotnet
+    #- docker
+    #- docker_services

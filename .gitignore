@@ -1,0 +1,8 @@
+/collections
+/cp
+/galaxy_cache
+/plugins
+/ssh-keys
+/tmp
+99*
+inventory.yml

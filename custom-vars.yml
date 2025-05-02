@@ -1,0 +1,102 @@
+---
+############
+# cronicle #
+############
+
+#cronicle_git_script: "https://raw.githubusercontent.com/jhuckaby/Cronicle/master/bin/install.js"
+
+##########
+# docker #
+##########
+
+#docker_users:
+#  - axelander
+
+###################
+# docker_services #
+###################
+
+#docker_services_container_path: "~/container"
+#docker_services_include:
+#  - axelanderwiki
+#  - diagrams
+#  - paperless
+
+#docker_services_axelanderwiki_port: "8080"
+#docker_services_axelanderwiki_build_context: "~/projects/AxelanderWiki"
+#docker_services_axelanderwiki_git_repository: "git@github.com:TheAxelander/AxelanderWiki.git"
+
+#docker_services_diagrams_port: "8080"
+
+#docker_services_paperless_port: "8000"
+#docker_services_paperless_phpmyadmin_port: "8000"
+#docker_services_paperless_db_name: "paperless"
+#docker_services_paperless_db_user: "paperless"
+#docker_services_paperless_db_password: "paperless"
+#docker_services_paperless_db_root_password: "myRootPassword"
+#docker_services_paperless_export_path: "./export"
+#docker_services_paperless_consume_path: "./consume"
+
+#docker_services_paperless_url: "https://paperless.axelander.net"
+#docker_services_paperless_secret_key: "mySecretKey"
+#docker_services_paperless_tz: "Europe/Berlin"
+#docker_services_paperless_ocr_lang: "deu"
+
+# Optional
+# This is an example how to add OpenId connect
+#docker_services_paperless_misc: |
+#  PAPERLESS_APPS="allauth.socialaccount.providers.openid_connect"
+#  PAPERLESS_SOCIALACCOUNT_PROVIDERS='{"openid_connect": { "APPS": [{ "provider_id": "authentik", "name": "Authentik", "client_id": "myClientId", "secret": "mySecret", "settings": { "server_url": "https://authentik.axelander.net/application/o/paperless/.well-known/openid-configuration" }}], "OAUTH_PKCE_ENABLED": "True" }}'
+
+
+##########
+# dotnet #
+##########
+
+#dotnet_version: "9.0"
+
+#######
+# git #
+#######
+
+#git_user: "Alexander Preibisch"
+#git_email: "alexpreib@outlook.com"
+#git_editor: "nano"
+
+###########
+# locales #
+###########
+
+#locales_locale: "en_US.UTF-8"
+#locales_keymap: "de"
+
+
+#############
+# oh_my_zsh #
+#############
+
+#omz_git_repository: "https://github.com/ohmyzsh/oh-my-zsh.git"
+#omz_install_path: "~/.oh-my-zsh"
+#omz_version: "master"
+
+#zsh_autosuggestions_git_repository: "https://github.com/zsh-users/zsh-autosuggestions.git"
+#zsh_syntax_highlighting_git_repository: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+
+#fzf_git_repository: "https://github.com/junegunn/fzf.git"
+#fzf_install_path: "~/.fzf"
+
+#fzf_tab_git_repository: "https://github.com/Aloxaf/fzf-tab"
+
+#navi_release_archive: "https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-x86_64-unknown-linux-musl.tar.gz"
+#navi_install_path: "~/.local/bin"
+
+#zoxide_git_script: "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
+
+#######
+# ssh #
+#######
+
+#ssh_user: "axelander"
+#ssh_public_keys:
+#  - "ssh-rsa AAAAB3... user1@example.com"
+#  - "ssh-rsa AAAAB3... user2@example.com"

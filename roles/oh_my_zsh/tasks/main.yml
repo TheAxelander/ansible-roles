@@ -1,0 +1,15 @@
+---
+- name: Setup Oh My ZSH
+  include_tasks: "omz.yml"
+
+- name: Setup fzf
+  include_tasks: "fzf.yml"
+
+- name: Setup navi
+  include_tasks: "navi.yml"
+
+- name: Setup zoxide
+  include_tasks: "zoxide.yml"
+
+- name: Copy ZSH config
+  include_tasks: "zshrc.yml"

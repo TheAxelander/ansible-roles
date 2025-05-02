@@ -1,0 +1,5 @@
+---
+- name: Deploy Docker Services
+  include_tasks: "{{ item }}.yml"
+  loop: "{{ docker_services_include }}"
+  

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+cd {{ docker_services_axelanderwiki_build_context }}
+
+# Fetch the latest changes
+git fetch
+
+# Check if there are new commits
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+
+CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
+
+# Rebuild if necessary
+if [ $LOCAL = $REMOTE ]; then
+    echo "[$CURRENT_TIME] Up-to-date"
+else
+    echo "[$CURRENT_TIME] Need to pull"
+    git pull
+    cd {{ docker_services_container_path }}/axelanderwiki
+    docker compose down
+    docker image rm axelanderwiki-axelanderwiki
+    docker compose build
+    docker compose up -d
+fi

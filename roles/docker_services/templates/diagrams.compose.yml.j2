@@ -1,0 +1,8 @@
+name: diagrams
+
+services:
+  diagrams:
+    image: jgraph/drawio
+    restart: unless-stopped
+    ports:
+      - {{ docker_services_diagrams_port }}:8080

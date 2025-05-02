@@ -1,0 +1,7 @@
+---
+- name: Add authorized SSH keys from vars file
+  authorized_key:
+    user: "{{ ssh_user }}"
+    state: present
+    key: "{{ item }}"
+  loop: "{{ ssh_public_keys }}"

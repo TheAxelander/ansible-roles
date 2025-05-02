@@ -1,0 +1,51 @@
+---
+- name: Ensure the directory exists
+  file:
+    path: "{{ docker_services_container_path }}/axelanderwiki"
+    state: directory
+
+- name: Clone Repository
+  git:
+    repo: "{{ docker_services_axelanderwiki_git_repository }}"
+    dest: "{{ docker_services_axelanderwiki_build_context }}"
+    update: true
+    accept_hostkey: true
+
+- name: Copy compose.yml
+  template:
+    src: "axelanderwiki.compose.yml.j2"
+    dest: "{{ docker_services_container_path }}/axelanderwiki/compose.yml"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'
+
+- name: Copy rebuild.sh
+  template:
+    src: "axelanderwiki.rebuild.sh.j2"
+    dest: "{{ docker_services_container_path }}/axelanderwiki/rebuild.sh"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0755'
+
+- name: Ensure cron is installed
+  become: true
+  package:
+    name: 
+      - cron
+    state: present
+
+- name: Schedule cron job
+  cron:
+    name: "Rebuild AxelanderWiki"
+    minute: "*/5"
+    hour: "*"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: "{{ docker_services_container_path }}/axelanderwiki/rebuild.sh >> {{ docker_services_container_path }}/axelanderwiki/rebuild.log 2>&1"
+    state: present
+
+- name: Start service
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_services_container_path }}/axelanderwiki"
+    state: present

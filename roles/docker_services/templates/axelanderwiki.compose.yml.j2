@@ -1,0 +1,9 @@
+name: axelanderwiki
+
+services:
+  axelanderwiki:
+    build:
+      context: {{ docker_services_axelanderwiki_build_context }}
+    ports:
+      - {{ docker_services_axelanderwiki_port }}:8080
+    restart: unless-stopped

@@ -1,0 +1,21 @@
+docker_services_container_path: "~/container"
+
+docker_services_axelanderwiki_port: "8080"
+docker_services_axelanderwiki_build_context: "~/projects/AxelanderWiki"
+docker_services_axelanderwiki_git_repository: "git@github.com:TheAxelander/AxelanderWiki.git"
+
+docker_services_diagrams_port: "8080"
+
+docker_services_paperless_port: "8000"
+docker_services_paperless_phpmyadmin_port: "8000"
+docker_services_paperless_db_name: "paperless"
+docker_services_paperless_db_user: "paperless"
+docker_services_paperless_db_password: "paperless"
+docker_services_paperless_db_root_password: "myRootPassword"
+docker_services_paperless_export_path: "./export"
+docker_services_paperless_consume_path: "./consume"
+docker_services_paperless_url: "https://paperless.axelander.net"
+docker_services_paperless_secret_key: "mySecretKey"
+docker_services_paperless_tz: "Europe/Berlin"
+docker_services_paperless_ocr_lang: "deu"
+docker_services_paperless_misc: ""

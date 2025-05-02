@@ -1,0 +1,16 @@
+---
+- name: Download dotnet-install.sh script
+  get_url:
+    url: "https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh"
+    dest: "/tmp/dotnet-install.sh"
+    mode: 'u+x'
+
+- name: Install .NET SDK
+  command: "/tmp/dotnet-install.sh --channel {{ dotnet_version }} --install-dir ~/.dotnet"
+  args:
+    creates: "~/.dotnet"  # This ensures the script doesn't run if dotnet is already installed
+
+- name: Clean up dotnet-install.sh script
+  file:
+    path: "/tmp/dotnet-install.sh"
+    state: absent
