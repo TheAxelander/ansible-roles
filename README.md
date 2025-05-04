@@ -3,7 +3,7 @@
 ## Installation
 
 ``` bash
-git clone git@github.com:TheAxelander/ansible-playbooks.git ~/.ansible
+git clone git@github.com:TheAxelander/ansible-roles.git ~/.ansible-roles
 ```
 
 ## Role dependecies
