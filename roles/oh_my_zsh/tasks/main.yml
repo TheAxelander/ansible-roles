@@ -13,3 +13,6 @@
 
 - name: Copy ZSH config
   include_tasks: "zshrc.yml"
+
+- name: Setup tmux
+  include_tasks: "tmux.yml"  
