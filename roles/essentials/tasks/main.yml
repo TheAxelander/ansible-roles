@@ -5,13 +5,14 @@
     update_cache: yes
     state: latest
     pkg:
+      - bat
+      - btop
       - curl
       - exa
       - mc
       - nala
-      - btop
       - pipx
-      - bat
+      - tmux
 
 - name: Ensure ~/.local/bin directory exists
   ansible.builtin.file:
