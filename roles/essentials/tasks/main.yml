@@ -13,7 +13,6 @@
       - nala
       - ncdu
       - pipx
-      - tmux
 
 - name: Ensure ~/.local/bin directory exists
   ansible.builtin.file:
