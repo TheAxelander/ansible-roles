@@ -26,6 +26,9 @@
     dest: "{{ ansible_env.HOME }}/.local/bin/bat"
     state: link
 
+- name: Install wtf
+  include_tasks: "wtf.yml"
+
 #- name: Install tldr pages
 #  shell: "pipx install tldr"
 

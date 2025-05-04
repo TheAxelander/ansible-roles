@@ -1,0 +1,35 @@
+---
+- name: Download wtf release artifact from GitHub
+  ansible.builtin.get_url:
+    url: "{{ download_url }}"
+    dest: "{{ artifact_path }}"
+    mode: '0644'
+
+- name: (Re)Install wtf with pipx
+  ansible.builtin.command:
+    cmd: "pipx install {{ artifact_path }} --force"
+
+- name: Cleanup artifact
+  ansible.builtin.file:
+    path: "{{ artifact_path }}"
+    state: absent
+
+- name: Ensure config path exists
+  file:
+    path: "~/.config/wtf"
+    state: directory
+
+- name: Copy wtf config
+  template:
+    src: "wtf.conf.j2"
+    dest: "~/.config/wtf/wtf.conf"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: '0644'
+
+- name: Clone cheatsheet repo
+  git:
+    repo: "{{ essentials_wtf_cheatsheet_repo_url }}"
+    dest: "{{ essentials_wtf_cheatsheet_repo_path }}"
+    update: true
+    accept_hostkey: true

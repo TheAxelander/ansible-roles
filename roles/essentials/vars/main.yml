@@ -1,0 +1,6 @@
+---
+wtf_base_url: "https://github.com/TheAxelander/wtf/releases/download"
+artifact_filename: "wtf-{{ essentials_wtf_version }}-py3-none-any.whl"
+download_url: "{{ wtf_base_url }}/{{ essentials_wtf_version }}/{{ artifact_filename }}"
+download_dir: "/tmp"
+artifact_path: "{{ download_dir }}/{{ artifact_filename }}"
