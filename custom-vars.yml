@@ -48,6 +48,13 @@
 #  PAPERLESS_APPS="allauth.socialaccount.providers.openid_connect"
 #  PAPERLESS_SOCIALACCOUNT_PROVIDERS='{"openid_connect": { "APPS": [{ "provider_id": "authentik", "name": "Authentik", "client_id": "myClientId", "secret": "mySecret", "settings": { "server_url": "https://authentik.axelander.net/application/o/paperless/.well-known/openid-configuration" }}], "OAUTH_PKCE_ENABLED": "True" }}'
 
+############
+# dotfiles #
+############
+
+#dotfiles_git_repository: "https://github.com/TheAxelander/dotfiles.git"
+#dotfiles_install_path: "~/.dotfiles"
+#dotfiles_package_ids: "1 4 5 6"
 
 ##########
 # dotnet #
