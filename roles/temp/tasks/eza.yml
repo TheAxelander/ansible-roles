@@ -1,0 +1,23 @@
+---
+
+- name: Remove exa
+  become: true
+  apt:
+    update_cache: yes
+    state: absent
+    pkg:
+      - exa
+
+- name: Install eza
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - eza
+
+- name: Update dotfiles
+  git:
+    repo: "https://github.com/TheAxelander/dotfiles.git"
+    dest: "~/.dotfiles"
+    update: true
