@@ -6,3 +6,5 @@
 /tmp
 99*
 inventory.yml
+custom-vars.yml
+test.yml
