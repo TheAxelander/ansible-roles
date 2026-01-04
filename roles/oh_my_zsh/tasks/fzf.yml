@@ -1,14 +1,11 @@
 ---
-- name: Git clone fzf
-  git:
-    repo: "{{ fzf_git_repository }}"
-    dest: "{{ fzf_install_path }}"
-    update: true
-    accept_hostkey: true
-    depth: 1
-
 - name: Install fzf
-  shell: "{{ fzf_install_path }}/install --all"
+  become: true
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - fzf
 
 - name: Git clone fzf-tab
   git:
